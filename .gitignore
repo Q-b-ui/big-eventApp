@@ -1,0 +1,4 @@
+# 处理不被git 管理的文件
+
+
+node_modules/
