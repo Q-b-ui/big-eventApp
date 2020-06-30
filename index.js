@@ -1,15 +1,21 @@
-//1.导入模块
-const express = require('express');
-//2.创建服务器
-let app = express();
-//3.开启服务器
-app.listen(3000,()=>{
-console.log('running........');
-});
+const express = require('express')
+const cors = require('cors')
+const path = require('path')
+const loginRouter = require(path.join(__dirname, 'router/login.js'))
+const app = express()
 
-// 4.处理客户端请求
+// 处理客户端请求post参数
+// for parsing application/json
+app.use(express.json()) 
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true })) 
 
-app.get('/data','utf8',(req,res)=>{
+// 设置跨域
+app.use(cors())
 
-    res.send('hello')
+// 设置路径
+app.use('/api', loginRouter)
+
+app.listen(3000, () => {
+  console.log('running...')
 })
